@@ -1,10 +1,73 @@
-# blockchain-developer-bootcamp-final-project
-UI for tracking different wallet funds to goals
+# Allowance DApp
 
-1. Users input different wallet addresses into UI (data not stored)
+## Project Description
+Allowance dApp streamlines the transfer of funds from a "parent" address to a "child" address
+- Set a "parent" and "child" account
+- Parent account, deposit ETH into contract
+- Withdraw ETH out of contract, with limitations on how much and when
 
-2. Dashboard is generated displaying different accounts/wallets in a separate or compiled by token view
+## Demo
+<!-- link to frontend -->
+<!-- link to Loom video walkthrough -->
 
-3. Users can enter distribution of token goals into UI
+## Directory structure
 
-4. Display comparison of goals to current standing in Dashboard 
+```
+.
+├── contracts/              // Solidity smart contracts
+├── docs/
+│   ├── avoiding_common_attacks.md
+│   └── design_pattern_decisions.md
+├── migrations/             // Truffle migrations
+├── frontend/               // Web App
+├── test/                   // Mocha + Chai contract tests
+├── utils/                  // Test utility
+├── deployed_addresses.txt  // Contract addresses on Ropsten
+├── README.md               // You are here!
+├── ...
+```
+
+## NFT recipient account address
+
+`0x...`
+
+# Usage
+
+## Install dependencies
+
+*Prerequisite: You must have node.js and npm installed*
+
+```sh
+npm install -g truffle
+npm i -g --only=prod https-localhost # Only if running the app locally
+```
+
+## Accessing the project
+<!-- link to frontend -->
+
+## Running locally
+
+*Prerequisite: You must run a local blockchain like Ganache in the background*
+
+```sh
+truffle compile
+truffle migrate
+cd frontend/
+serve . # May need sudo depending on OS
+```
+
+Open `localhost`, switch Metamask to your local blockchain network, and connect
+
+### Create a frontend/.env file containing the following
+
+```
+const INFURA_PROJECT_ID=<insert_yours_here>
+const CONTRACT_ADDRESS_RINKEBY=<from_truffle_migrate>
+const CONTRACT_ADDRESS_LOCAL=<from_ganache>
+```
+
+## Run unit tests
+
+```sh
+truffle test
+```
