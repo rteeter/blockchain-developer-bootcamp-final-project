@@ -25,6 +25,9 @@ contract("Allowance", function (accounts) {
     allowance = await Allowance.new(parent, child);
   };
 
+  /**
+   * Setup EVM and accounts for a testcase that needs to verify a time lockout of withdrawing Ether
+   */
   async function setupEvm(start = new Date()) {
     evm = new TimedEvm(start, accounts);
     const [parent, child] = accounts;
@@ -33,11 +36,17 @@ contract("Allowance", function (accounts) {
     await evm.fundAccount(child, toBN("10134439500000000000"));
   };
 
+  /**
+   * Verify Allowance contract has been deployed.
+   */
   it("should assert true", async function () {
     await Allowance.deployed();
     return assert.isTrue(true);
   });
 
+  /**
+   * Verify Allowance's `depositEther` function by sending 15 ETH to the contract.
+   */
   it("should send 15 ETH to contract from parent's address", async () => {
       const allowanceInstance = await Allowance.deployed();
       const balanceParentPre = await web3.eth.getBalance(parent);
@@ -50,6 +59,17 @@ contract("Allowance", function (accounts) {
       assert.equal(new BN(balanceParentPre).toString(), new BN(balanceParentPost).add(new BN('15').add(new BN(gasFee))).toString(), "ETH not deposited!");
   });
 
+  /**
+   * Verify Allowance's `withdrawEther` function will fail when withdrawing more than 5 ETH.
+   */
+  it("should NOT withdraw more than 5 ETH from contract into child's address", async () => {
+    const allowanceInstance = await Allowance.deployed();
+    await truffleAssert.reverts(allowanceInstance.withdrawEther(new BN(6).toString(), child));
+  });
+
+  /**
+   * Verify Allowance's `withdrawEther` function by withdrawing 3 ETH from the contract.
+   */
   it("should withdraw 3 ETH from contract into child's address", async () => {
     const allowanceInstance = await Allowance.deployed();
     const balanceChildPre = await web3.eth.getBalance(child);
@@ -58,16 +78,17 @@ contract("Allowance", function (accounts) {
     assert.equal(new BN(balanceChildPre).toString(), new BN(balanceChildPost).sub(new BN('3')).toString(), "ETH not withdrawn!");
   });
 
-  it("should NOT withdraw more than 5 ETH from contract into child's address", async () => {
-    const allowanceInstance = await Allowance.deployed();
-    await truffleAssert.reverts(allowanceInstance.withdrawEther(new BN(6).toString(), child));
-  });
-
+  /**
+   * Verify Allowance's `withdrawEther` function will fail when withdrawing more than 1x/week.
+   */
   it("should NOT withdraw more than 1x/week into child's address", async () => {
     const allowanceInstance = await Allowance.deployed();
     await truffleAssert.reverts(allowanceInstance.withdrawEther(new BN(3).toString(), child));
   });
 
+  /**
+   * Verify Allowance's `withdrawEther` function will pass when withdrawing after 1 week has passed from prior withdraw.
+   */
   it("should be able to withdraw allowance 1x/week into child's address", async () => {
     await setupEvm();
     await beforeEachSetup(evm.provider);

@@ -4,36 +4,47 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Final Project</title>
+  <title>Allowance DApp</title>
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-  
-
 </head>
 <body>
-    <h1>The Allowance Dapp</h1>
-    <div id="mm-detected"></div>
+    <h1>Allowance DApp</h1>
     <!-- Connect to MetaMask Wallet -->
+    <p>Connect to MetaMask</p>
+    <div id="mm-detected"></div>
     <button id="mm-connect">Connect to MetaMask</button>
-    <p>Parent Account</p>
     <!-- Display parent address and balance -->
+    <p>Parent Account</p>
     <div id="mm-parent-account"></div>
     <button id="get-parent-balance">Get Balance</button>
     <div id="mm-parent-balance"></div>
-
+    <!-- Display child address and balance -->
     <p>Child Account</p>
     <div>
         <input id="input-address-box" type="address" placeholder="Provide child address"/>  
     </div>
     <button id="submit-address-button">Submit Receiving Address</button>
-    <!-- Display child address and balance-->
     <div id="mm-child-account"></div>
     <button id="get-child-balance">Get Balance</button>
     <div id="mm-child-balance"></div>
-
-    <!-- Send Allowance -->
-    <p>Weekly Allowance = 5 ETH</p>
-    <button id="send-allowance">Send Allowance</button>
-
+    <!-- Deposit allowance into contract -->
+    <p>Weekly Allowance = 5 ETH per week</p>
+    <button id="deposit-allowance">Deposit Allowance</button>
+    <div id="mm-parent-balance-post"></div>
+    <div id="contract-amount"></div>
+    <!-- Withdraw allowance into contract -->
+    <p>Withdraw Allowance</p>
+    <div>
+      <input id="input-allowance-box" type="integer" placeholder="Provide allowance amount"/>  
+    </div>
+    <div>
+      <input id="child-address" type="address" placeholder="Provide target address"/>  
+    </div>
+    <button id="withdraw-allowance">Withdraw Allowance</button>
+    <div id="withdraw-amount"></div>
+    <div id="withdraw-address"></div>
+    <div id="contract-amount-post"></div>
+    <div id="child-amount-post"></div>
 </body>
 <!-- Javascript for html page -->
 <script src="dapp.js"></script>

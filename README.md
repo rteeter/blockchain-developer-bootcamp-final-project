@@ -7,7 +7,6 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 - Withdraw ETH out of contract, with limitations on how much and when
 
 ## Demo
-<!-- link to frontend -->
 <!-- link to Loom video walkthrough -->
 
 ## Directory structure
@@ -27,10 +26,6 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 ├── ...
 ```
 
-## NFT recipient account address
-
-`0x...`
-
 # Usage
 
 ## Install dependencies
@@ -43,7 +38,7 @@ npm i -g --only=prod https-localhost # Only if running the app locally
 ```
 
 ## Accessing the project
-<!-- link to frontend -->
+https://allowance-dapp.netlify.app/
 
 ## Running locally
 
@@ -62,7 +57,7 @@ Open `localhost`, switch Metamask to your local blockchain network, and connect
 
 ```
 const INFURA_PROJECT_ID=<insert_yours_here>
-const CONTRACT_ADDRESS_RINKEBY=<from_truffle_migrate>
+const CONTRACT_ADDRESS_ROPSTEN=<from_truffle_migrate>
 const CONTRACT_ADDRESS_LOCAL=<from_ganache>
 ```
 
