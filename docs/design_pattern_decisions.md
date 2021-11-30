@@ -2,7 +2,7 @@
 
 ## Access Control Design Patterns
 
-- ???
+- Restricted access to certain contract functions with the use of a modifier. In the `Allowance` function `depositEther`, only a parent can deposit Ether into the contract.
 
 ## Inheritance and Interfaces
 

@@ -11,3 +11,7 @@ Imported `ReentrancyGuard` contract into `Allowance` contract to prevent a re-en
 ## Proper Use of Require
 
 All `require` statements in contract validate and verify intended use case.
+
+## Modifiers Used Only for Validation
+
+All modifiers in contract(s) only validate data with `require` statements.

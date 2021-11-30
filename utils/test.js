@@ -1,3 +1,6 @@
+/**
+  * Imported utility with permission and credit to v-stickykeys
+  */
 const Ganache = require("ganache-core");
 const Web3 = require("web3");
 

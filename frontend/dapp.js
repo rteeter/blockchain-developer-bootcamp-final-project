@@ -1,5 +1,130 @@
-// How to import contract into JS?
-const Allowance = artifacts.require("Allowance");
+const ssABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_parent",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_child",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [],
+		"name": "child",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "childBalance",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "depositEther",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "limit",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lockTime",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "parent",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "timeOfWithdraw",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_address",
+				"type": "address"
+			}
+		],
+		"name": "withdrawEther",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
+
+const ssAddress;
+
+var web3 = new Web3(window.ethereum);
+const Allowance = new web3.eth.Contract(ssABI, ssAddress);
+Allowance.setProvider(window.ethereum);
 
 window.addEventListener('load', function() {
     if (typeof window.ethereum !== 'undefined') {
@@ -20,8 +145,6 @@ window.addEventListener('load', function() {
       mmDetected.innerHTML += '<p>MetaMask Not Available!<p>';
     }
 })
-
-var web3 = new Web3(window.ethereum);
 
 const mmEnable = document.getElementById('mm-connect');
 mmEnable.onclick = async () => {
@@ -70,7 +193,6 @@ getChildBalance.onclick = async () => {
 
 const submitAllowance = document.getElementById('send-allowance');
 submitAllowance.onclick = async () => {
-  // How to import contract into JS?
   // How is the amount of ETH specified?
   Allowance.depositEther();
   contractValue = Allowance.getBalance();

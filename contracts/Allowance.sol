@@ -23,6 +23,11 @@ contract Allowance is ReentrancyGuard {
   // TODO: Remove hardcoded amount and set as a constructor
   uint public lockTime = 7 days;
 
+  modifier isParent() {
+    require(msg.sender == parent, "Not the parent!");
+    _;
+  }
+
   constructor(address _parent, address _child) {
     parent = _parent; 
     child = _child;
@@ -30,8 +35,7 @@ contract Allowance is ReentrancyGuard {
 
   /// @notice Deposits Ether into contract
   /// @dev Only the parent account can deposit Ether into contract
-	function depositEther() payable public {
-    require(msg.sender == parent, "Not the parent!");
+	function depositEther() payable public isParent() {
     childBalance = childBalance + msg.value;
 	}
 
