@@ -13,37 +13,41 @@
     <p>Connect to MetaMask</p>
     <div id="mm-detected"></div>
     <button id="mm-connect">Connect to MetaMask</button>
-    <!-- Display parent address and balance -->
-    <p>Parent Account</p>
-    <div id="mm-parent-account"></div>
-    <button id="get-parent-balance">Get Balance</button>
-    <div id="mm-parent-balance"></div>
-    <!-- Display child address and balance -->
-    <p>Child Account</p>
+    <!-- Display MetaMask address and balance -->
+    <p>MetaMask Account</p>
+    <div id="mm-account"></div>
+    <button id="get-balance">Get Balance</button>
+    <div id="mm-balance"></div>
+    <!-- Setup Parent/Child Pair -->
+    <p>Set Parent/Child Pair</p>
     <div>
-        <input id="input-address-box" type="address" placeholder="Provide child address"/>  
+      <input id="input-pair-parent" type="address" placeholder="Provide parent address"/>  
     </div>
-    <button id="submit-address-button">Submit Receiving Address</button>
-    <div id="mm-child-account"></div>
-    <button id="get-child-balance">Get Balance</button>
-    <div id="mm-child-balance"></div>
+    <div>
+      <input id="input-pair-child" type="address" placeholder="Provide child address"/>  
+    </div>
+    <button id="get-parent-child-addresses">Submit Pair</button>
+    <div id="pair-addresses"></div>
+    <!-- Display contract balance -->
+    <p>Contract Balance</p>
+    <button id="get-contract-balance">Get Balance</button>
+    <div id="contract-balance-0"></div>
     <!-- Deposit allowance into contract -->
     <p>Weekly Allowance = 5 ETH per week</p>
     <button id="deposit-allowance">Deposit Allowance</button>
-    <div id="mm-parent-balance-post"></div>
-    <div id="contract-amount"></div>
+    <div id="mm-balance-post"></div>
+    <div id="contract-balance-post-0"></div>
     <!-- Withdraw allowance into contract -->
     <p>Withdraw Allowance</p>
     <div>
-      <input id="input-allowance-box" type="integer" placeholder="Provide allowance amount"/>  
+      <input id="requested-amount" type="integer" placeholder="Provide allowance amount"/>  
     </div>
     <div>
-      <input id="child-address" type="address" placeholder="Provide target address"/>  
+      <input id="target-address" type="address" placeholder="Provide target address"/>  
     </div>
     <button id="withdraw-allowance">Withdraw Allowance</button>
-    <div id="withdraw-amount"></div>
-    <div id="withdraw-address"></div>
-    <div id="contract-amount-post"></div>
+    <div id="withdraw-info"></div>
+    <div id="contract-balance-1"></div>
     <div id="child-amount-post"></div>
 </body>
 <!-- Javascript for html page -->
