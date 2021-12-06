@@ -227,13 +227,13 @@ depositAllowance.onclick = async () => {
 	await allowanceInstance.methods.depositEther().send({value: web3.utils.toWei(depositedAmount), from: ethereum.selectedAddress});
 	
 	const mmBalanceAmt = await web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-            value = web3.utils.fromWei(result, "ether") + " ETH";
-            console.log(web3.utils.fromWei(result, "ether") + " ETH");
-        }
-    })
+  if (err) {
+    console.log(err);
+    } else {
+      value = web3.utils.fromWei(result, "ether") + " ETH";
+      console.log(web3.utils.fromWei(result, "ether") + " ETH");
+    }
+  })
 	const mmBalancePostDeposit = document.getElementById('mm-balance-post-deposit');
   mmBalancePostDeposit.innerHTML = 'New MetaMask Balance: ' + web3.utils.fromWei(mmBalanceAmt) + ' ETH';
 	const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
