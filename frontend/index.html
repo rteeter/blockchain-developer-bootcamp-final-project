@@ -5,54 +5,67 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Allowance DApp</title>
+  <link rel="stylesheet" href="dapp.css">
   <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
 <body>
-    <h1>Allowance DApp</h1>
-    <!-- Connect to MetaMask Wallet -->
-    <p>Connect to MetaMask</p>
-    <div id="mm-detected"></div>
-    <button id="mm-connect">Connect to MetaMask</button>
-    <!-- Display MetaMask address and balance -->
-    <p>MetaMask Account</p>
-    <div id="mm-account"></div>
-    <button id="get-mm-balance">Get Balance</button>
-    <div id="mm-balance"></div>
-    <!-- Setup Parent/Child Pair -->
-    <p>Set Parent/Child Pair</p>
-    <div>
-      <input id="input-pair-parent" type="address" placeholder="Provide parent address"/>  
+  <h1>Allowance DApp</h1>
+  <div class="container">
+    <div class="wrapper">
+      <div class="column-left">
+        <div id="mm">
+          <p>Connect to MetaMask</p>
+          <div id="mm-detected"></div>
+          <button id="mm-connect">Connect to MetaMask</button>
+          <p>MetaMask Account</p>
+          <div id="mm-account"></div>
+          <button id="get-mm-balance">Get Balance</button>
+          <div id="mm-balance"></div>
+        </div>
+        <div id="pair">
+          <p>Set Parent/Child Pair</p>
+          <div>
+            <input id="input-pair-parent" type="address" placeholder="Input parent address"/>
+          </div>
+          <div>
+            <input id="input-pair-child" type="address" placeholder="Input child address"/>  
+          </div>
+          <button id="submit-pair-addresses">Submit Pair</button>
+          <div id="pair-addresses"></div>
+        </div>
+      </div>
+      <div class="column-right">
+        <div id="contract">
+          <p>Contract Balance</p>
+          <button id="get-contract-balance">Get Balance</button>
+          <div id="contract-info"></div>
+        </div>
+        <div id="deposit">
+          <p>Deposit Allowance</p>
+          <div>
+            <input id="input-deposit-amount" type="integer" placeholder="Input ETH amount for deposit"/>  
+          </div>
+          <button id="deposit-allowance">Deposit Allowance</button>
+          <div id="deposit-info"></div>
+          <div id="mm-balance-post-deposit"></div>
+          <div id="contract-balance-post-deposit"></div>
+        </div>
+        <div id="withdraw">
+          <p>Withdraw Allowance</p>
+          <div>
+            <input id="input-request-amount" type="integer" placeholder="Input ETH amount for withdraw"/>  
+          </div>
+          <div>
+            <input id="target-address" type="address" placeholder="Input target address"/>  
+          </div>
+          <button id="withdraw-allowance">Withdraw Allowance</button>
+          <div id="withdraw-info"></div>
+          <div id="contract-balance-post-withdraw"></div>
+          <div id="child-amount-post-withdraw"></div>
+        </div>
+      </div>
     </div>
-    <div>
-      <input id="input-pair-child" type="address" placeholder="Provide child address"/>  
-    </div>
-    <button id="submit-pair-addresses">Submit Pair</button>
-    <div id="pair-addresses"></div>
-    <!-- Display Contract Balance -->
-    <p>Contract Balance</p>
-    <button id="get-contract-balance">Get Balance</button>
-    <div id="contract-info"></div>
-    <!-- Deposit Allowance Into Contract -->
-    <p>Weekly Allowance = 5 ETH per week</p>
-    <div>
-      <input id="input-deposit-amount" type="integer" placeholder="Provide ETH amount for deposit"/>  
-    </div>
-    <button id="deposit-allowance">Deposit Allowance</button>
-    <div id='deposit-info'></div>
-    <div id="mm-balance-post-deposit"></div>
-    <div id="contract-balance-post-deposit"></div>
-    <!-- Withdraw allowance into contract -->
-    <p>Withdraw Allowance</p>
-    <div>
-      <input id="input-request-amount" type="integer" placeholder="Provide ETH amount for withdraw"/>  
-    </div>
-    <div>
-      <input id="target-address" type="address" placeholder="Provide target address"/>  
-    </div>
-    <button id="withdraw-allowance">Withdraw Allowance</button>
-    <div id="withdraw-info"></div>
-    <div id="contract-balance-post-withdraw"></div>
-    <div id="child-amount-post-withdraw"></div>
+  </div>
 </body>
 <!-- Javascript for html page -->
 <script src="dapp.js"></script>
