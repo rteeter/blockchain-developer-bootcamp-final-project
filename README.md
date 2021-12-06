@@ -7,7 +7,7 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 - Withdraw ETH out of contract, with limitations on how much and when
 
 ## Demo
-<!-- link to Loom video walkthrough -->
+<!-- link to Loom video walkthrough -->**
 
 ## Directory structure
 
@@ -29,40 +29,30 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 # Usage
 
 ## Install dependencies
-
 *Prerequisite: You must have node.js and npm installed*
-
 ```sh
 npm install -g truffle
-npm i -g --only=prod https-localhost # Only if running the app locally
 ```
+Install Live Server as an extension in Visual Studio Code
 
 ## Accessing the project
-https://allowance-dapp.netlify.app/
+https://allowance-dapp-project.netlify.app/
 
 ## Running locally
-
-*Prerequisite: You must run a local blockchain like Ganache in the background*
-
 ```sh
 truffle compile
 truffle migrate
-cd frontend/
-serve . # May need sudo depending on OS
 ```
+Navigate to the `frontend` folder and select the `index.html` file
+Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
+The DApp should open a new or window within your default browser
 
-Open `localhost`, switch Metamask to your local blockchain network, and connect
-
-### Create a frontend/.env file containing the following
-
-```
-const INFURA_PROJECT_ID=<insert_yours_here>
-const CONTRACT_ADDRESS_ROPSTEN=<from_truffle_migrate>
-const CONTRACT_ADDRESS_LOCAL=<from_ganache>
-```
+## Important Things to Consider
+When interacting with the DApp:
+- You will need two MetaMask accounts: one for the parent account, one for the child account
+- Make sure to switch both MetaMask accounts to the Ropsten blockchain network
 
 ## Run unit tests
-
 ```sh
 truffle test
 ```

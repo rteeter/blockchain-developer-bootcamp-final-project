@@ -1,2 +1,4 @@
-Address:
+// To note, the contract deploys a new instance each time, below is an example instance
+// Each instance requires a "parent" and "child" address
+Address: 0x22bfab30bf197b3c864ee3c99feaa403eea6b52a
 Network: Ropsten

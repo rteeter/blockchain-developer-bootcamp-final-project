@@ -17,7 +17,7 @@ contract Allowance is ReentrancyGuard {
 
   /// @notice The limit is set to 5, and represents how much ETH can be withdrawn from the contract at one time
   // TODO: Remove hardcoded amount and set as a constructor
-  uint public limit = 5;
+  uint public limit = 5 ether;
 
   /// @notice The lockTime is set to 7 days, and represents how long an account must wait between withdraws from the contract
   // TODO: Remove hardcoded amount and set as a constructor
@@ -35,16 +35,17 @@ contract Allowance is ReentrancyGuard {
 
   /// @notice Deposits Ether into contract
   /// @dev Only the parent account can deposit Ether into contract
-	function depositEther() payable public isParent() {
+	function depositEther() payable public isParent {
     childBalance = childBalance + msg.value;
 	}
 
   /// @notice Withdraw Ether from contract
   /// @param _amount The amount that is deposited into the given address
   /// @param _address The account in which the Ether is deposited into
-  function withdrawEther(uint _amount, address _address) public {
+  function withdrawEther(uint _amount, address _address) public nonReentrant {
     // TODO: Differientiate between parent and child address; parent account can withdraw ETH without time and amount limitations
-    
+    // TODO: Child address can withdraw up to 5 ETH a week, and doesn't have with 5 ETH all at once
+  
     /// @dev The amount in the contract must over or equal to the requested withdrawl amount
     require(address(this).balance >= _amount, "Contract doesn't have enough ETH");
 
