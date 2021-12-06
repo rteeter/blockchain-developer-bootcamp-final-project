@@ -16,7 +16,7 @@
     <!-- Display MetaMask address and balance -->
     <p>MetaMask Account</p>
     <div id="mm-account"></div>
-    <button id="get-balance">Get Balance</button>
+    <button id="get-mm-balance">Get Balance</button>
     <div id="mm-balance"></div>
     <!-- Setup Parent/Child Pair -->
     <p>Set Parent/Child Pair</p>
@@ -26,29 +26,33 @@
     <div>
       <input id="input-pair-child" type="address" placeholder="Provide child address"/>  
     </div>
-    <button id="get-parent-child-addresses">Submit Pair</button>
+    <button id="submit-pair-addresses">Submit Pair</button>
     <div id="pair-addresses"></div>
-    <!-- Display contract balance -->
+    <!-- Display Contract Balance -->
     <p>Contract Balance</p>
     <button id="get-contract-balance">Get Balance</button>
-    <div id="contract-balance-0"></div>
-    <!-- Deposit allowance into contract -->
+    <div id="contract-info"></div>
+    <!-- Deposit Allowance Into Contract -->
     <p>Weekly Allowance = 5 ETH per week</p>
+    <div>
+      <input id="input-deposit-amount" type="integer" placeholder="Provide ETH amount for deposit"/>  
+    </div>
     <button id="deposit-allowance">Deposit Allowance</button>
-    <div id="mm-balance-post"></div>
-    <div id="contract-balance-post-0"></div>
+    <div id='deposit-info'></div>
+    <div id="mm-balance-post-deposit"></div>
+    <div id="contract-balance-post-deposit"></div>
     <!-- Withdraw allowance into contract -->
     <p>Withdraw Allowance</p>
     <div>
-      <input id="requested-amount" type="integer" placeholder="Provide allowance amount"/>  
+      <input id="input-request-amount" type="integer" placeholder="Provide ETH amount for withdraw"/>  
     </div>
     <div>
       <input id="target-address" type="address" placeholder="Provide target address"/>  
     </div>
     <button id="withdraw-allowance">Withdraw Allowance</button>
     <div id="withdraw-info"></div>
-    <div id="contract-balance-1"></div>
-    <div id="child-amount-post"></div>
+    <div id="contract-balance-post-withdraw"></div>
+    <div id="child-amount-post-withdraw"></div>
 </body>
 <!-- Javascript for html page -->
 <script src="dapp.js"></script>
