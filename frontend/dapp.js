@@ -185,16 +185,16 @@ mmEnable.onclick = async () => {
 const getmmBalance = document.getElementById('get-mm-balance');
 getmmBalance.onclick = async () => {
 	let value;
-    web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-            value = web3.utils.fromWei(result, "ether") + " ETH";
-            console.log(web3.utils.fromWei(result, "ether") + " ETH");
-			var mmBalance = document.getElementById('mm-balance');
-			mmBalance.innerHTML = 'MetaMask Balance: ' + value;
-        }
-    })
+  web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
+    if (err) {
+      console.log(err);
+    } else {
+      value = web3.utils.fromWei(result, "ether") + " ETH";
+      console.log(web3.utils.fromWei(result, "ether") + " ETH");
+      var mmBalance = document.getElementById('mm-balance');
+      mmBalance.innerHTML = 'MetaMask Balance: ' + value;
+    }
+  })
 }
 
 const getContractBalance = document.getElementById('get-contract-balance');
@@ -261,15 +261,14 @@ withdrawEther.onclick = async () => {
 	const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
   const contractBalancePostWithdraw = document.getElementById('contract-balance-post-withdraw');
 	contractBalancePostWithdraw.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
-
-	const childBalancePostWithdraw = document.getElementById('child-amount-post-withdraw');
+	const targetBalancePostWithdraw = document.getElementById('target-amount-post-withdraw');
 	await web3.eth.getBalance(targetAddress, function(err, result) {
-        if (err) {
-          console.log(err);
-        } else {
-            value = web3.utils.fromWei(result, "ether") + " ETH";
-            console.log(web3.utils.fromWei(result, "ether") + " ETH");
-			      childBalancePostWithdraw.innerHTML = 'New Child Balance: ' + value + ' ETH';
-        }
-    })
+    if (err) {
+      console.log(err);
+    } else {
+        value = web3.utils.fromWei(result, "ether") + " ETH";
+        console.log(web3.utils.fromWei(result, "ether") + " ETH");
+        targetBalancePostWithdraw.innerHTML = 'New Target Account Balance: ' + value;
+    }
+  })
 }
