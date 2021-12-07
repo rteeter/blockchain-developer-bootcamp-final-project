@@ -36,7 +36,7 @@ npm install -g truffle
 Install Live Server as an extension in Visual Studio Code
 
 ## Accessing the project
-https://allowance-dapp-project.netlify.app/
+https://allowance-dapp.netlify.app/
 
 ## Running locally
 ```sh
