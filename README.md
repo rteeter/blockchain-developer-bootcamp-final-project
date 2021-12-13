@@ -52,6 +52,7 @@ truffle migrate
 When interacting with the DApp:
 - You will need two MetaMask accounts: one for the parent account, one for the child account
 - Make sure to switch both MetaMask accounts to the Ropsten blockchain network
+- If in need of test ETH: https://faucet.ropsten.be/
 
 ## Run unit tests
 ```sh
