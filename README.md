@@ -44,9 +44,9 @@ https://allowance-dapp.netlify.app/
 truffle compile
 truffle migrate
 ```
-Navigate to the `frontend` folder and select the `index.html` file
-Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
-The DApp should open a new or window within your default browser
+- Navigate to the `frontend` folder and select the `index.html` file
+- Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
+- The DApp should open a new or window within your default browser
 
 ## Important Things to Consider
 When interacting with the DApp:
