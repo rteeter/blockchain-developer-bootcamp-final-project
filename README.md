@@ -7,7 +7,7 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 - Withdraw ETH out of contract, with limitations on how much and when
 
 ## Demo
-<!-- link to Loom video walkthrough -->**
+https://loom.com/share/497296b691754e8c9d9dd60a578de415
 
 ## Directory structure
 
