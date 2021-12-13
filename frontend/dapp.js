@@ -124,6 +124,9 @@ let allowanceInstance;
 const web3 = new Web3(window.ethereum);
 const Allowance = new web3.eth.Contract(ABI);
 
+/**
+ * Check for MetaMask
+*/
 window.addEventListener('load', function() {
     if (typeof window.ethereum !== 'undefined') {
       console.log('window.ethereum is enabled');
@@ -143,6 +146,9 @@ window.addEventListener('load', function() {
     }
 })
 
+/**
+ * Set parent and child accounts, then deploy contract
+*/
 const getPairAddresses = document.getElementById('submit-pair-addresses');
 getPairAddresses.onclick = async () => {
   const mmAccount = ethereum.selectedAddress;
@@ -175,6 +181,9 @@ getPairAddresses.onclick = async () => {
 	});
 }
 
+/**
+ * Connect to MetaMask
+*/
 const mmEnable = document.getElementById('mm-connect');
 mmEnable.onclick = async () => {
     await ethereum.request({method: 'eth_requestAccounts'})
@@ -182,6 +191,9 @@ mmEnable.onclick = async () => {
     mmAccount.innerHTML = 'My Account: ' + ethereum.selectedAddress;
 }
 
+/**
+ * Get balance of connected MetaMask account
+*/
 const getmmBalance = document.getElementById('get-mm-balance');
 getmmBalance.onclick = async () => {
 	let value;
@@ -197,6 +209,9 @@ getmmBalance.onclick = async () => {
   })
 }
 
+/**
+ * Get contract balance
+*/
 const getContractBalance = document.getElementById('get-contract-balance');
 getContractBalance.onclick = async () => {
 	const parent = document.getElementById('input-pair-parent').value;
@@ -210,6 +225,9 @@ getContractBalance.onclick = async () => {
   }
 }
 
+/**
+ * Deposit inputed amount into contract from connected MetaMask account
+*/
 const depositAllowance = document.getElementById('deposit-allowance');
 depositAllowance.onclick = async () => {
   const parent = document.getElementById('input-pair-parent').value;
@@ -241,6 +259,9 @@ depositAllowance.onclick = async () => {
   contractBalancePostDeposit.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
 }
 
+/**
+ * Withdraw ETH from contract into inputed MetaMask account
+*/
 const withdrawEther = document.getElementById('withdraw-allowance');
 withdrawEther.onclick = async () => {
   const parent = document.getElementById('input-pair-parent').value;
