@@ -32,6 +32,7 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 *Prerequisite: You must have node.js and npm installed*
 ```sh
 npm install -g truffle
+npm i ganache-cli
 ```
 Install Live Server as an extension in Visual Studio Code
 
