@@ -7,7 +7,7 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 - Withdraw ETH out of contract, with limitations on how much and when
 
 ## Demo
-<!-- link to Loom video walkthrough -->**
+https://loom.com/share/497296b691754e8c9d9dd60a578de415
 
 ## Directory structure
 
@@ -32,25 +32,27 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 *Prerequisite: You must have node.js and npm installed*
 ```sh
 npm install -g truffle
+npm i ganache-cli
 ```
 Install Live Server as an extension in Visual Studio Code
 
 ## Accessing the project
-https://allowance-dapp-project.netlify.app/
+https://allowance-dapp.netlify.app/
 
 ## Running locally
 ```sh
 truffle compile
 truffle migrate
 ```
-Navigate to the `frontend` folder and select the `index.html` file
-Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
-The DApp should open a new or window within your default browser
+- Navigate to the `frontend` folder and select the `index.html` file
+- Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
+- The DApp should open a new or window within your default browser
 
 ## Important Things to Consider
 When interacting with the DApp:
 - You will need two MetaMask accounts: one for the parent account, one for the child account
 - Make sure to switch both MetaMask accounts to the Ropsten blockchain network
+- If in need of test ETH: https://faucet.ropsten.be/
 
 ## Run unit tests
 ```sh
