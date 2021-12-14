@@ -6,11 +6,13 @@ Allowance dApp streamlines the transfer of funds from a "parent" address to a "c
 - Parent account, deposit ETH into contract
 - Withdraw ETH out of contract, with limitations on how much and when
 
+## Accessing the project
+https://allowance-dapp.netlify.app/
+
 ## Demo
 https://loom.com/share/497296b691754e8c9d9dd60a578de415
 
 ## Directory structure
-
 ```
 .
 ├── contracts/              // Solidity smart contracts
@@ -27,7 +29,6 @@ https://loom.com/share/497296b691754e8c9d9dd60a578de415
 ```
 
 # Usage
-
 Clone repository to local directory:
 ```sh
 git clone https://github.com/rteeter/blockchain-developer-bootcamp-final-project.git
@@ -40,10 +41,8 @@ npm install -g truffle
 ```
 Install Live Server as an extension in Visual Studio Code
 
-## Accessing the project
-https://allowance-dapp.netlify.app/
-
 ## Running locally
+Navigate into blockchain-developer-bootcamp-final-project folder
 ```sh
 npm install
 truffle compile
