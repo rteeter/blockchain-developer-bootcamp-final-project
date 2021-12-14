@@ -37,7 +37,6 @@ git clone https://github.com/rteeter/blockchain-developer-bootcamp-final-project
 *Prerequisite: You must have node.js and npm installed*
 ```sh
 npm install -g truffle
-npm i ganache-cli
 ```
 Install Live Server as an extension in Visual Studio Code
 
@@ -46,8 +45,8 @@ https://allowance-dapp.netlify.app/
 
 ## Running locally
 ```sh
+npm install
 truffle compile
-truffle migrate
 ```
 - Navigate to the `frontend` folder and select the `index.html` file
 - Open Live Server by right clicking `index.html` and selecting "Open with Live Server"
