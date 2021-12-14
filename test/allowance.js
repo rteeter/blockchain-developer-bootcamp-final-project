@@ -60,14 +60,6 @@ contract("Allowance", function (accounts) {
   });
 
   /**
-   * Verify Allowance's `withdrawEther` function will fail when withdrawing more than 5 ETH.
-   */
-  it("should NOT withdraw more than 5 ETH from contract into child's address", async () => {
-    const allowanceInstance = await Allowance.deployed();
-    await truffleAssert.reverts(allowanceInstance.withdrawEther(new BN(6).toString(), child));
-  });
-
-  /**
    * Verify Allowance's `withdrawEther` function by withdrawing 3 ETH from the contract.
    */
   it("should withdraw 3 ETH from contract into child's address", async () => {
@@ -77,6 +69,14 @@ contract("Allowance", function (accounts) {
     const balanceChildPost = await web3.eth.getBalance(child);
     assert.equal(new BN(balanceChildPre).toString(), new BN(balanceChildPost).sub(new BN('3')).toString(), "ETH not withdrawn!");
   });
+
+  /**
+   * Verify Allowance's `withdrawEther` function will fail when withdrawing more than 5 ETH.
+   */
+    it("should NOT withdraw more than 5 ETH from contract into child's address", async () => {
+    const allowanceInstance = await Allowance.deployed();
+    await truffleAssert.reverts(allowanceInstance.withdrawEther(new BN(6).toString(), child));
+  });  
 
   /**
    * Verify Allowance's `withdrawEther` function will fail when withdrawing more than 1x/week.
