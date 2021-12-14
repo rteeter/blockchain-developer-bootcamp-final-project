@@ -28,6 +28,11 @@ https://loom.com/share/497296b691754e8c9d9dd60a578de415
 
 # Usage
 
+Clone repository to local directory:
+```sh
+git clone https://github.com/rteeter/blockchain-developer-bootcamp-final-project.git
+```
+
 ## Install dependencies
 *Prerequisite: You must have node.js and npm installed*
 ```sh
