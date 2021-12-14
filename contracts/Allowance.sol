@@ -17,7 +17,7 @@ contract Allowance is ReentrancyGuard {
 
   /// @notice The limit is set to 5, and represents how much ETH can be withdrawn from the contract at one time
   // TODO: Remove hardcoded amount and set as a constructor
-  uint public limit = 5 ether;
+  uint public limit = 5;
 
   /// @notice The lockTime is set to 7 days, and represents how long an account must wait between withdraws from the contract
   // TODO: Remove hardcoded amount and set as a constructor
