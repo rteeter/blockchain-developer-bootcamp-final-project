@@ -46,7 +46,7 @@ contract Allowance is ReentrancyGuard {
     // TODO: Differientiate between parent and child address; parent account can withdraw ETH without time and amount limitations
     // TODO: Child address can withdraw up to 5 ETH a week, and doesn't have with 5 ETH all at once
   
-    /// @dev The amount in the contract must over or equal to the requested withdrawl amount
+    /// @dev The amount in the contract must be over or equal to the requested withdrawl amount
     require(address(this).balance >= _amount, "Contract doesn't have enough ETH");
 
     /// @dev The amount requested must be less than set limit amount (5 ETH)

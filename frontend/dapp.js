@@ -169,7 +169,10 @@ getPairAddresses.onclick = async () => {
 	.send({
 		from: mmAccount
 	}, function(error, transactionHash){})
-	.on('error', function(error){})
+	.on('error', function(error){
+    console.log(error);
+    pairAddresses.innerHTML = 'Submission failed. Please try again, and enter two separate MetaMask accounts.';
+  })
 	.on('transactionHash', function(transactionHash){})
 	.on('receipt', function(receipt){
 	   console.log(receipt.contractAddress)
@@ -178,6 +181,7 @@ getPairAddresses.onclick = async () => {
 	.then(function(newContractInstance){
 		allowanceInstance = newContractInstance;
 		console.log(newContractInstance.options.address)
+    pairAddresses.innerHTML = 'Successfully deployed contract and set the parent ' + parent + ' and child: ' + child + ' accounts';
 	});
 }
 
@@ -197,13 +201,13 @@ mmEnable.onclick = async () => {
 const getmmBalance = document.getElementById('get-mm-balance');
 getmmBalance.onclick = async () => {
 	let value;
+  var mmBalance = document.getElementById('mm-balance');
   web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
     if (err) {
       console.log(err);
     } else {
       value = web3.utils.fromWei(result, "ether") + " ETH";
       console.log(web3.utils.fromWei(result, "ether") + " ETH");
-      var mmBalance = document.getElementById('mm-balance');
       mmBalance.innerHTML = 'MetaMask Balance: ' + value;
     }
   })
@@ -242,21 +246,26 @@ depositAllowance.onclick = async () => {
     depositedInfo.innerHTML = 'Depositing ' + depositedAmount + ' into contract';
   }
 
-	await allowanceInstance.methods.depositEther().send({value: web3.utils.toWei(depositedAmount), from: ethereum.selectedAddress});
-	
-	const mmBalanceAmt = await web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
-  if (err) {
-    console.log(err);
-    } else {
-      value = web3.utils.fromWei(result, "ether") + " ETH";
-      console.log(web3.utils.fromWei(result, "ether") + " ETH");
-    }
-  })
-	const mmBalancePostDeposit = document.getElementById('mm-balance-post-deposit');
-  mmBalancePostDeposit.innerHTML = 'New MetaMask Balance: ' + web3.utils.fromWei(mmBalanceAmt) + ' ETH';
-	const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
-	const contractBalancePostDeposit = document.getElementById('contract-balance-post-deposit');
-  contractBalancePostDeposit.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
+	try { 
+    await allowanceInstance.methods.depositEther().send({value: web3.utils.toWei(depositedAmount), from: ethereum.selectedAddress});
+    depositedInfo.innerHTML = 'Successfully deposited ' + depositedAmount + ' into contract';
+    const mmBalanceAmt = await web3.eth.getBalance(ethereum.selectedAddress, function(err, result) {
+      if (err) {
+        console.log(err);
+        } else {
+          value = web3.utils.fromWei(result, "ether") + " ETH";
+          console.log(web3.utils.fromWei(result, "ether") + " ETH");
+        }
+      })
+      const mmBalancePostDeposit = document.getElementById('mm-balance-post-deposit');
+      mmBalancePostDeposit.innerHTML = 'New MetaMask Balance: ' + web3.utils.fromWei(mmBalanceAmt) + ' ETH';
+      const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
+      const contractBalancePostDeposit = document.getElementById('contract-balance-post-deposit');
+      contractBalancePostDeposit.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
+  } catch (err) {
+    console.log(err)
+    depositedInfo.innerHTML = 'Deposit failed. Only the parent can deposit ETH, and there must be sufficient funds in the MetaMask account to deposit.';
+  }
 }
 
 /**
@@ -277,19 +286,24 @@ withdrawEther.onclick = async () => {
     withdrawInfo.innerHTML = 'Withdrawing: ' + withdrawAmount + ' into ' + targetAddress;
   }
 
-	await allowanceInstance.methods.withdrawEther(web3.utils.toWei(withdrawAmount), targetAddress).send({from: ethereum.selectedAddress});
-  
-	const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
-  const contractBalancePostWithdraw = document.getElementById('contract-balance-post-withdraw');
-	contractBalancePostWithdraw.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
-	const targetBalancePostWithdraw = document.getElementById('target-amount-post-withdraw');
-	await web3.eth.getBalance(targetAddress, function(err, result) {
-    if (err) {
-      console.log(err);
-    } else {
-        value = web3.utils.fromWei(result, "ether") + " ETH";
-        console.log(web3.utils.fromWei(result, "ether") + " ETH");
-        targetBalancePostWithdraw.innerHTML = 'New Target Account Balance: ' + value;
-    }
-  })
+  try { 
+    await allowanceInstance.methods.withdrawEther(web3.utils.toWei(withdrawAmount), targetAddress).send({from: ethereum.selectedAddress});
+    withdrawInfo.innerHTML = 'Successfully withdrew: ' + withdrawAmount + ' into ' + targetAddress;
+    const contractBalanceAmt = await web3.eth.getBalance(allowanceInstance.options.address);
+    const contractBalancePostWithdraw = document.getElementById('contract-balance-post-withdraw');
+    contractBalancePostWithdraw.innerHTML = 'New Contract Balance: ' + web3.utils.fromWei(contractBalanceAmt) + ' ETH';
+    const targetBalancePostWithdraw = document.getElementById('target-amount-post-withdraw');
+    await web3.eth.getBalance(targetAddress, function(err, result) {
+      if (err) {
+        console.log(err);
+      } else {
+          value = web3.utils.fromWei(result, "ether") + " ETH";
+          console.log(web3.utils.fromWei(result, "ether") + " ETH");
+          targetBalancePostWithdraw.innerHTML = 'New Target Account Balance: ' + value;
+      }
+    })
+  } catch (err) {
+    console.log(err)
+    withdrawInfo.innerHTML = 'Withdraw failed. There must be sufficient funds in the contract account to withdraw, the withdrawl must be less than 5 ETH, and the withdrawl can only happen 1x/week.';
+  }
 }
